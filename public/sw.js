@@ -1,8 +1,9 @@
-const CACHE_NAME = 'lifefinance-v3';
+const CACHE_NAME = 'lifefinance-v5';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/favicon.ico',
   '/favicon.png',
   '/icon-192.png',
   '/icon-512.png'
@@ -12,7 +13,7 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return Promise.allSettled(
-        ASSETS_TO_CACHE.map(url => cache.add(url).catch(err => console.log('SW cache add skip:', url, err)))
+        ASSETS_TO_CACHE.map(url => cache.add(url).catch(err => console.log('SW cache skip:', url, err)))
       );
     })
   );
@@ -41,18 +42,9 @@ self.addEventListener('fetch', (event) => {
       if (cachedResponse) {
         return cachedResponse;
       }
-      return fetch(event.request).then((networkResponse) => {
-        if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
-          return networkResponse;
-        }
-        const responseToCache = networkResponse.clone();
-        caches.open(CACHE_NAME).then((cache) => {
-          cache.put(event.request, responseToCache);
-        });
-        return networkResponse;
-      }).catch(() => {
+      return fetch(event.request).catch(() => {
         if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
+          return caches.match('/index.html') || caches.match('/');
         }
       });
     })
