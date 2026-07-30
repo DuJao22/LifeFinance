@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { UserProfile, PersonRecord, MovementHistoryItem } from '../types';
 import { LOGO_DATA_URL } from '../assets/logoData';
+import { PWAInstallModal } from './PWAInstallModal';
 import {
   updateUserProfile,
   changeUserPassword,
@@ -77,6 +78,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   // Reset & Delete account confirmation
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showResetModal, setShowResetModal] = useState(false);
+  const [showPwaModal, setShowPwaModal] = useState(false);
   const [resetConfirmInput, setResetConfirmInput] = useState('');
 
   const debts = records.filter(r => r.type === 'DEVO');
@@ -221,7 +223,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </div>
 
           <div>
-            <label className="text-xs font-semibold text-slate-300 mb-1 block">URL da Foto de Perfil</label>
+            <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">URL da Foto de Perfil</label>
             <div className="relative">
               <Camera className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
@@ -229,7 +231,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
                 placeholder="https://exemplo.com/foto.jpg"
                 value={photo}
                 onChange={(e) => setPhoto(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
               />
             </div>
           </div>
@@ -237,28 +239,28 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
 
         {/* Notifications & Theme Toggles */}
         <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div className="p-3 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-between">
+          <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Bell className="w-4 h-4 text-amber-400" />
-              <span className="text-xs font-semibold text-slate-200">Notificações de Vencimento</span>
+              <Bell className="w-4 h-4 text-amber-500 dark:text-amber-400" />
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">Notificações de Vencimento</span>
             </div>
             <input
               type="checkbox"
               checked={notifications}
               onChange={(e) => setNotifications(e.target.checked)}
-              className="w-4 h-4 rounded bg-slate-700 border-slate-600 text-blue-600"
+              className="w-4 h-4 rounded bg-slate-200 dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-blue-600"
             />
           </div>
 
-          <div className="p-3 rounded-2xl bg-slate-800/60 border border-slate-700/60 flex items-center justify-between">
+          <div className="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              {isDarkMode ? <Moon className="w-4 h-4 text-indigo-400" /> : <Sun className="w-4 h-4 text-amber-400" />}
-              <span className="text-xs font-semibold text-slate-200">Tema {isDarkMode ? 'Escuro' : 'Claro'}</span>
+              {isDarkMode ? <Moon className="w-4 h-4 text-indigo-400" /> : <Sun className="w-4 h-4 text-amber-500" />}
+              <span className="text-xs font-semibold text-slate-800 dark:text-slate-200">Tema {isDarkMode ? 'Escuro' : 'Claro'}</span>
             </div>
             <button
               type="button"
               onClick={onToggleTheme}
-              className="px-3 py-1 rounded-lg bg-blue-600 text-white text-[11px] font-bold"
+              className="px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-[11px] font-bold transition-all shadow-sm"
             >
               Alternar
             </button>
@@ -478,9 +480,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </div>
           </div>
           <button
-            onClick={() => {
-              showToast('Para instalar: toque no menu do navegador e escolha "Adicionar à Tela Inicial" 📲', 'info');
-            }}
+            onClick={() => setShowPwaModal(true)}
             className="w-full py-2.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-blue-300 text-xs font-bold flex items-center justify-center gap-2 transition-all"
           >
             <Download className="w-4 h-4 text-blue-400" />
@@ -679,6 +679,12 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </div>
         )}
       </AnimatePresence>
+      {/* PWA Step-by-step Installation Guide Modal */}
+      <PWAInstallModal
+        isOpen={showPwaModal}
+        onClose={() => setShowPwaModal(false)}
+        deferredPrompt={null}
+      />
     </div>
   );
 };

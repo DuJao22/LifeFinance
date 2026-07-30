@@ -568,10 +568,10 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     if (active && payload && payload.length) {
                       const data = payload[0].payload;
                       return (
-                        <div className="p-3 rounded-2xl bg-slate-900 border border-slate-700 text-white shadow-xl text-xs space-y-1">
-                          <p className="font-bold text-sm text-indigo-300">{data.fullName}</p>
-                          <p className="text-slate-300">{data.tipo}</p>
-                          <div className="border-t border-slate-800 pt-1 space-y-0.5">
+                        <div className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl text-xs space-y-1">
+                          <p className="font-bold text-sm text-indigo-600 dark:text-indigo-300">{data.fullName}</p>
+                          <p className="text-slate-600 dark:text-slate-300">{data.tipo}</p>
+                          <div className="border-t border-slate-200 dark:border-slate-800 pt-1 space-y-0.5">
                             <p className="flex justify-between gap-4">
                               <span>Total Original:</span>
                               <span className="font-bold">{formatCurrency(data.Original)}</span>
@@ -664,11 +664,11 @@ export const Dashboard: React.FC<DashboardProps> = ({
                     if (active && payload && payload.length) {
                       const data = payload[0].payload;
                       return (
-                        <div className="p-3 rounded-2xl bg-slate-900 border border-slate-700 text-white shadow-xl text-xs space-y-1">
-                          <p className="font-bold text-indigo-300">{data.pessoa}</p>
-                          <p className="text-slate-300">{data.Acao}</p>
-                          <p className="font-extrabold text-emerald-400">Valor: {formatCurrency(data.Valor)}</p>
-                          <p className="text-[10px] text-slate-400">Acumulado no Período: {formatCurrency(data.Abatimentos)}</p>
+                        <div className="p-3 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white shadow-xl text-xs space-y-1">
+                          <p className="font-bold text-indigo-600 dark:text-indigo-300">{data.pessoa}</p>
+                          <p className="text-slate-600 dark:text-slate-300">{data.Acao}</p>
+                          <p className="font-extrabold text-emerald-600 dark:text-emerald-400">Valor: {formatCurrency(data.Valor)}</p>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400">Acumulado no Período: {formatCurrency(data.Abatimentos)}</p>
                         </div>
                       );
                     }
