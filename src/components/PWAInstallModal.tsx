@@ -142,7 +142,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     1
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Toque nos <strong className="text-slate-900 dark:text-white">3 pontinhos (⋮)</strong> no canto superior direito do seu navegador Chrome/Edge.
+                    Toque nos <strong className="text-slate-900 dark:text-white">3 pontinhos (⋮)</strong> no canto superior direito do seu navegador Chrome.
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -150,7 +150,16 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     2
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Clique em <strong className="text-blue-600 dark:text-blue-400">"Instalar aplicativo"</strong> ou <strong className="text-blue-600 dark:text-blue-400">"Adicionar à Tela Inicial"</strong>.
+                    Clique em <strong className="text-blue-600 dark:text-blue-400">"Instalar aplicativo"</strong> ou <strong className="text-blue-600 dark:text-blue-400">"Criar atalho"</strong> / <strong className="text-blue-600 dark:text-blue-400">"Adicionar à Tela Inicial"</strong>.
+                  </p>
+                </div>
+                <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl space-y-1 my-1 text-slate-800 dark:text-slate-200">
+                  <div className="font-bold text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                    <Sparkles className="w-4 h-4 shrink-0" />
+                    <span>Se apareceu "Criar atalho":</span>
+                  </div>
+                  <p className="text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+                    Marque a caixinha <strong className="text-slate-900 dark:text-white">"Abrir como janela"</strong> antes de confirmar! Isso fará o atalho abrir como um <strong className="text-emerald-600 dark:text-emerald-400">Aplicativo Nativo em Tela Cheia</strong>, sem a barra do navegador.
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -158,7 +167,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     3
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Confirme em <strong className="text-emerald-600 dark:text-emerald-400">"Instalar"</strong>. O ícone do LifeFinance aparecerá na sua lista de apps!
+                    Pronto! O ícone do LifeFinance vai para a tela inicial do seu celular.
                   </p>
                 </div>
               </div>
@@ -179,7 +188,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     2
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Role as opções e toque em <strong className="text-blue-600 dark:text-blue-400">"Adicionar à Tela de Início"</strong>.
+                    Role as opções para baixo e toque em <strong className="text-blue-600 dark:text-blue-400">"Adicionar à Tela de Início"</strong>.
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -200,7 +209,7 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     1
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    No Chrome/Edge no computador, procure pelo ícone de <strong className="text-blue-600 dark:text-blue-400">Instalação ⬇️</strong> do lado direito da barra de endereço (URL).
+                    No Chrome/Edge no PC, clique nos <strong className="text-slate-900 dark:text-white">3 pontinhos (⋮)</strong> ou no ícone de <strong className="text-blue-600 dark:text-blue-400">Instalar (⬇️)</strong> na barra de endereço.
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5">
@@ -208,12 +217,28 @@ export const PWAInstallModal: React.FC<PWAInstallModalProps> = ({
                     2
                   </span>
                   <p className="text-slate-700 dark:text-slate-300">
-                    Ou clique nos <strong className="text-slate-900 dark:text-white">3 pontinhos (⋮)</strong> do navegador e selecione <strong className="text-blue-600 dark:text-blue-400">"Instalar LifeFinance"</strong>.
+                    Se escolher <strong className="text-blue-600 dark:text-blue-400">"Criar atalho"</strong>, marque a opção <strong className="text-emerald-600 dark:text-emerald-400">"Abrir como janela"</strong>.
                   </p>
                 </div>
               </div>
             )}
           </div>
+
+          {/* Open in New Tab Helper Button */}
+          {window.self !== window.top && (
+            <div className="p-3 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-2xl flex items-center justify-between gap-2">
+              <div className="text-[11px] text-blue-800 dark:text-blue-200">
+                <strong>Você está na pré-visualização:</strong> Abra em uma nova aba para liberar a instalação nativa do navegador.
+              </div>
+              <button
+                onClick={() => window.open(window.location.href, '_blank')}
+                className="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-xs shrink-0 flex items-center gap-1 shadow-sm transition-all"
+              >
+                <span>Abrir Aba</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
 
           {/* Benefits Bullet List */}
           <div className="space-y-1.5 text-xs text-slate-600 dark:text-slate-400 pt-1">
