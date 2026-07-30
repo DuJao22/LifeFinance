@@ -48,6 +48,7 @@ interface ProfileViewProps {
   onLogout: () => void;
   showToast: (message: string, type: 'success' | 'error' | 'info', title?: string) => void;
   onRefreshData: () => void;
+  onReplayIntro?: () => void;
 }
 
 export const ProfileView: React.FC<ProfileViewProps> = ({
@@ -59,7 +60,8 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
   onUserUpdated,
   onLogout,
   showToast,
-  onRefreshData
+  onRefreshData,
+  onReplayIntro
 }) => {
   const [name, setName] = useState(user.name);
   const [photo, setPhoto] = useState(user.photo || '');
@@ -403,6 +405,36 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             <span>Zerar Todos os Meus Dados</span>
           </button>
         </div>
+      </div>
+
+      {/* App Identity & Replay Intro Card */}
+      <div className="p-5 rounded-3xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-blue-950/40 border border-indigo-500/30 shadow-xl backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 shadow-xl shrink-0 p-0.5">
+            <img src="/logo.jpg" alt="LifeFinance 3D Emblem" className="w-full h-full object-cover rounded-xl" referrerPolicy="no-referrer" />
+          </div>
+          <div>
+            <h3 className="text-sm font-extrabold text-white flex items-center gap-2">
+              <span>Nova Identidade Visual LifeFinance</span>
+              <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+                Ícone 3D
+              </span>
+            </h3>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Assista à vinheta animada de introdução e carregamento do sistema
+            </p>
+          </div>
+        </div>
+
+        {onReplayIntro && (
+          <button
+            onClick={onReplayIntro}
+            className="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition-all shrink-0"
+          >
+            <Sparkles className="w-4 h-4 text-emerald-300" />
+            <span>Ver Vinheta de Intro</span>
+          </button>
+        )}
       </div>
 
       {/* Creator Credits & Web App Install Card */}

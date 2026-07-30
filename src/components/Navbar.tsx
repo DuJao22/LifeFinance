@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserProfile } from '../types';
-import { Sun, Moon, Bell, Wallet, LogOut } from 'lucide-react';
+import { Sun, Moon, Bell, LogOut, Play } from 'lucide-react';
 
 interface NavbarProps {
   user: UserProfile;
@@ -10,6 +10,7 @@ interface NavbarProps {
   onOpenNotifications: () => void;
   pendingDueCount: number;
   onLogout: () => void;
+  onReplayIntro?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -19,7 +20,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleTheme,
   onOpenNotifications,
   pendingDueCount,
-  onLogout
+  onLogout,
+  onReplayIntro
 }) => {
   const getTabTitle = () => {
     switch (activeTab) {
@@ -43,9 +45,21 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo & View Title */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white font-bold">
-            <Wallet className="w-5 h-5" />
-          </div>
+          <button
+            onClick={onReplayIntro}
+            className="group relative w-10 h-10 rounded-xl overflow-hidden bg-slate-900 border border-slate-700 shadow-md flex items-center justify-center shrink-0 hover:scale-105 transition-transform"
+            title="Ver Vinheta de Intro LifeFinance"
+          >
+            <img
+              src="/logo.jpg"
+              alt="LifeFinance Logo 3D"
+              className="w-full h-full object-cover group-hover:opacity-80 transition-opacity"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-blue-600/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition-opacity">
+              <Play className="w-4 h-4 fill-current" />
+            </div>
+          </button>
           <div>
             <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">LifeFinance</span>
             <h1 className="text-sm font-bold text-slate-800 dark:text-slate-100 sm:text-base line-clamp-1">

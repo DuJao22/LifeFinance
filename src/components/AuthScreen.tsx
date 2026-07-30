@@ -80,9 +80,14 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLoginSuccess, showToas
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="inline-flex p-3.5 bg-gradient-to-tr from-blue-600 to-emerald-500 rounded-2xl shadow-xl shadow-blue-500/20 mb-3"
+            className="inline-flex w-16 h-16 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden p-0.5 mb-3"
           >
-            <Wallet className="w-8 h-8 text-white" />
+            <img
+              src="/logo.jpg"
+              alt="LifeFinance Logo 3D"
+              className="w-full h-full object-cover rounded-xl"
+              referrerPolicy="no-referrer"
+            />
           </motion.div>
           <h1 className="text-3xl font-extrabold tracking-tight text-white">LifeFinance</h1>
           <p className="text-sm text-slate-400 mt-1">Gestão inteligente de dívidas e empréstimos pessoais</p>

@@ -22,11 +22,13 @@ import { ProfileView } from './components/ProfileView';
 import { PersonDetailModal } from './components/PersonDetailModal';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { InstagramFollowBanner } from './components/InstagramFollowBanner';
+import { SplashScreen } from './components/SplashScreen';
 import { daysUntilDue } from './utils/formatters';
 
 export default function App() {
   const [currentUser, setCurrentUserState] = useState<UserProfile | null>(null);
   const [activeTab, setActiveTab] = useState<string>('dashboard');
+  const [showSplash, setShowSplash] = useState<boolean>(true);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     const saved = localStorage.getItem('lifefinance_theme');
     return saved !== null ? saved === 'dark' : true;
@@ -97,6 +99,7 @@ export default function App() {
   const handleLoginSuccess = (user: UserProfile) => {
     setCurrentUserState(user);
     loadUserData(user.id);
+    setShowSplash(true);
   };
 
   const handleLogout = () => {
@@ -197,6 +200,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-blue-500 selection:text-white transition-colors duration-300">
+      {/* Animated Personalized Splash Intro Screen */}
+      {showSplash && (
+        <SplashScreen
+          userName={currentUser.name}
+          onComplete={() => setShowSplash(false)}
+        />
+      )}
+
       <ToastContainer toasts={toasts} onDismiss={handleDismissToast} />
 
       {/* Header */}
@@ -214,6 +225,7 @@ export default function App() {
         }}
         pendingDueCount={pendingDueCount}
         onLogout={handleLogout}
+        onReplayIntro={() => setShowSplash(true)}
       />
 
       {/* Main Content Area */}
@@ -272,6 +284,7 @@ export default function App() {
             onLogout={handleLogout}
             showToast={showToast}
             onRefreshData={() => loadUserData(currentUser.id)}
+            onReplayIntro={() => setShowSplash(true)}
           />
         )}
 
