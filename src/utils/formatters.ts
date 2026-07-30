@@ -101,7 +101,6 @@ export function exportToPDF(
     headStyles: { fillColor: [51, 65, 85] },
   });
 
-  // @ts-expect-error - jsPDF autotable lastAutoTable position
   startY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 12;
 
   // Receivables Table
@@ -126,7 +125,6 @@ export function exportToPDF(
     headStyles: { fillColor: [16, 185, 129] }, // Green
   });
 
-  // @ts-expect-error - jsPDF autotable lastAutoTable position
   startY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 12;
 
   // Debts Table
