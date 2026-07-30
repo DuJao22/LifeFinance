@@ -11,7 +11,6 @@ import {
 } from '../utils/storage';
 import { getEncryptionMetadata } from '../utils/crypto';
 import { exportToPDF, exportToExcel } from '../utils/formatters';
-import { SQLiteCloudSection } from './SQLiteCloudSection';
 import {
   User,
   Mail,
@@ -35,7 +34,8 @@ import {
   AlertTriangle,
   Instagram,
   Smartphone,
-  ExternalLink
+  ExternalLink,
+  Database
 } from 'lucide-react';
 
 interface ProfileViewProps {
@@ -288,17 +288,21 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             </div>
             <div>
               <h3 className="text-sm font-bold text-slate-100 flex items-center gap-2">
-                <span>Criptografia Profissional no Banco</span>
+                <span>Banco de Dados Protegido e Criptografado</span>
                 <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-[10px] font-bold">
-                  Ativa por Padrão
+                  100% Seguro
                 </span>
               </h3>
-              <p className="text-[11px] text-slate-400">Proteção de ponta a ponta com AES-256-GCM & PBKDF2</p>
+              <p className="text-[11px] text-slate-400">Proteção de ponta a ponta com criptografia AES-256-GCM & PBKDF2</p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono">
+        <p className="text-xs text-slate-300 leading-relaxed">
+          Seu banco de dados é automaticamente verificado, estruturado e protegido com criptografia militar pelo servidor na inicialização. Seus dados financeiros e de login permanecem estritamente confidenciais e protegidos contra acessos não autorizados.
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs font-mono pt-1">
           <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800">
             <span className="text-[10px] font-bold text-slate-400 block">ALGORITMO</span>
             <span className="text-emerald-400 font-bold">{encMeta.engine}</span>
@@ -451,14 +455,6 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           </button>
         </div>
       </div>
-
-      {/* SQLiteCloud & Render Hosting Section */}
-      <SQLiteCloudSection
-        user={user}
-        records={records}
-        history={history}
-        showToast={showToast}
-      />
 
       {/* Account Danger Zone */}
       <div className="p-6 rounded-3xl bg-rose-950/20 border border-rose-900/40 shadow-xl backdrop-blur-md space-y-4">
