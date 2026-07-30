@@ -1,5 +1,5 @@
 // LifeFinance Service Worker for PWA Offline Capabilities & Fast Loading
-const CACHE_NAME = 'lifefinance-pwa-v1';
+const CACHE_NAME = 'lifefinance-pwa-v2';
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -7,7 +7,12 @@ self.addEventListener('install', (event) => {
       return cache.addAll([
         '/',
         '/index.html',
-        '/manifest.json'
+        '/manifest.json',
+        '/favicon.ico',
+        '/favicon-32x32.png',
+        '/favicon-16x16.png',
+        '/icon-192.png',
+        '/icon-512.png'
       ]);
     })
   );
