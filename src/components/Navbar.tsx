@@ -1,6 +1,7 @@
 import React from 'react';
 import { UserProfile } from '../types';
 import { Sun, Moon, Bell, LogOut, Play } from 'lucide-react';
+import { LOGO_DATA_URL } from '../assets/logoData';
 
 interface NavbarProps {
   user: UserProfile;
@@ -51,10 +52,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             title="Ver Vinheta de Intro LifeFinance"
           >
             <img
-              src="/logo.jpg"
+              src={LOGO_DATA_URL}
               alt="LifeFinance Logo 3D"
               className="w-full h-full object-cover group-hover:opacity-80 transition-opacity"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-blue-600/30 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition-opacity">
               <Play className="w-4 h-4 fill-current" />

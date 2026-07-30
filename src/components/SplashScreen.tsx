@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ShieldCheck, Sparkles, Lock, ArrowRight } from 'lucide-react';
+import { LOGO_DATA_URL } from '../assets/logoData';
 
 interface SplashScreenProps {
   onComplete: () => void;
@@ -82,10 +83,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onComplete, userName
               className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-3xl overflow-hidden p-1 bg-slate-900 border border-slate-700/80 shadow-2xl flex items-center justify-center"
             >
               <img
-                src="/logo.jpg"
+                src={LOGO_DATA_URL}
                 alt="LifeFinance 3D Logo"
                 className="w-full h-full object-cover rounded-2xl shadow-inner"
-                referrerPolicy="no-referrer"
               />
             </motion.div>
 

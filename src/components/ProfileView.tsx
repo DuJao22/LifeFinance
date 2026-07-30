@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { UserProfile, PersonRecord, MovementHistoryItem } from '../types';
+import { LOGO_DATA_URL } from '../assets/logoData';
 import {
   updateUserProfile,
   changeUserPassword,
@@ -411,7 +412,7 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
       <div className="p-5 rounded-3xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-blue-950/40 border border-indigo-500/30 shadow-xl backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-2xl overflow-hidden bg-slate-900 border border-slate-700 shadow-xl shrink-0 p-0.5">
-            <img src="/logo.jpg" alt="LifeFinance 3D Emblem" className="w-full h-full object-cover rounded-xl" referrerPolicy="no-referrer" />
+            <img src={LOGO_DATA_URL} alt="LifeFinance 3D Emblem" className="w-full h-full object-cover rounded-xl" />
           </div>
           <div>
             <h3 className="text-sm font-extrabold text-white flex items-center gap-2">

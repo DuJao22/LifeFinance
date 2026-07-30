@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Wallet, Mail, Lock, User, ArrowRight, ShieldCheck, CheckCircle2, AlertCircle } from 'lucide-react';
 import { loginUser, registerUser } from '../utils/storage';
 import { UserProfile } from '../types';
+import { LOGO_DATA_URL } from '../assets/logoData';
 
 interface AuthScreenProps {
   onLoginSuccess: (user: UserProfile) => void;
@@ -83,10 +84,9 @@ export const AuthScreen: React.FC<AuthScreenProps> = ({ onLoginSuccess, showToas
             className="inline-flex w-16 h-16 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden p-0.5 mb-3"
           >
             <img
-              src="/logo.jpg"
+              src={LOGO_DATA_URL}
               alt="LifeFinance Logo 3D"
               className="w-full h-full object-cover rounded-xl"
-              referrerPolicy="no-referrer"
             />
           </motion.div>
           <h1 className="text-3xl font-extrabold tracking-tight text-white">LifeFinance</h1>
