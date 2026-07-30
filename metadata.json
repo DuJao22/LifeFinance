@@ -1,0 +1,6 @@
+{
+  "name": "LifeFinance",
+  "description": "Gerenciamento financeiro de dívidas, empréstimos, recebimentos parciais e relatórios.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

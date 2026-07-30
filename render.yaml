@@ -1,0 +1,19 @@
+# Render Blueprint Manifest for LifeFinance
+# Deploy directly to Render: https://render.com
+
+services:
+  - type: web
+    name: lifefinance-app
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: SQLITECLOUD_URL
+        sync: false
