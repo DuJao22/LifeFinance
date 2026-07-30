@@ -32,7 +32,10 @@ import {
   ShieldCheck,
   Key,
   RotateCcw,
-  AlertTriangle
+  AlertTriangle,
+  Instagram,
+  Smartphone,
+  ExternalLink
 } from 'lucide-react';
 
 interface ProfileViewProps {
@@ -382,10 +385,10 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
           <div>
             <p className="text-xs font-bold text-amber-400 flex items-center gap-1.5">
               <RotateCcw className="w-4 h-4" />
-              <span>Zerar Dados Financeiros da Conta</span>
+              <span>Zerar Dados Financeiros da Sua Conta</span>
             </p>
             <p className="text-[11px] text-slate-400">
-              Limpa todos os registros de dívidas, recebíveis e histórico sem excluir seu login.
+              Limpa os registros e histórico exclusivos da conta <strong className="text-slate-200">{user.email}</strong>, sem afetar seu login.
             </p>
           </div>
           <button
@@ -393,7 +396,58 @@ export const ProfileView: React.FC<ProfileViewProps> = ({
             className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold transition-all flex items-center justify-center gap-1.5 shrink-0"
           >
             <RotateCcw className="w-4 h-4" />
-            <span>Zerar Todos os Dados</span>
+            <span>Zerar Todos os Meus Dados</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Creator Credits & Web App Install Card */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Layon.dev Instagram Card */}
+        <div className="p-5 rounded-3xl bg-gradient-to-br from-pink-950/40 via-purple-950/40 to-slate-900/90 border border-pink-500/30 shadow-xl backdrop-blur-md space-y-3 flex flex-col justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center shrink-0 shadow-lg shadow-pink-500/20">
+              <Instagram className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-xs font-extrabold text-white flex items-center gap-1">
+                <span>Criador: Layon.dev</span>
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              </h3>
+              <p className="text-[11px] text-slate-400">Siga no Instagram para suporte e novidades</p>
+            </div>
+          </div>
+          <a
+            href="https://instagram.com/layon.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-2.5 rounded-xl bg-pink-600/20 hover:bg-pink-600/30 border border-pink-500/40 text-pink-300 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+          >
+            <Instagram className="w-4 h-4 text-pink-400" />
+            <span>Siga @Layon.dev no Instagram</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+          </a>
+        </div>
+
+        {/* Web App Installation Card */}
+        <div className="p-5 rounded-3xl bg-gradient-to-br from-blue-950/40 via-indigo-950/40 to-slate-900/90 border border-blue-500/30 shadow-xl backdrop-blur-md space-y-3 flex flex-col justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-blue-500/20 text-blue-400 border border-blue-500/30 flex items-center justify-center shrink-0">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="text-xs font-extrabold text-white">Aplicativo Web (PWA)</h3>
+              <p className="text-[11px] text-slate-400">Instale na tela inicial do celular como app</p>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              showToast('Para instalar: toque no menu do navegador e escolha "Adicionar à Tela Inicial" 📲', 'info');
+            }}
+            className="w-full py-2.5 rounded-xl bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-blue-300 text-xs font-bold flex items-center justify-center gap-2 transition-all"
+          >
+            <Download className="w-4 h-4 text-blue-400" />
+            <span>Como Instalar o Aplicativo</span>
           </button>
         </div>
       </div>

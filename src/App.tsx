@@ -20,6 +20,8 @@ import { PaymentModal } from './components/PaymentModal';
 import { HistoryList } from './components/HistoryList';
 import { ProfileView } from './components/ProfileView';
 import { PersonDetailModal } from './components/PersonDetailModal';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
+import { InstagramFollowBanner } from './components/InstagramFollowBanner';
 import { daysUntilDue } from './utils/formatters';
 
 export default function App() {
@@ -211,7 +213,11 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-24">
+        {/* Temporary PWA Install & Creator Instagram Banners */}
+        <PWAInstallBanner />
+        <InstagramFollowBanner />
+
         {activeTab === 'dashboard' && (
           <Dashboard
             records={records}
@@ -264,6 +270,22 @@ export default function App() {
             onRefreshData={() => loadUserData(currentUser.id)}
           />
         )}
+
+        {/* Footer System Credits */}
+        <footer className="mt-12 text-center text-xs text-slate-500 py-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p>LifeFinance © 2026 • Criptografia Profissional AES-256</p>
+          <p className="flex items-center gap-1 text-slate-400">
+            <span>Sistema desenvolvido por</span>
+            <a
+              href="https://instagram.com/layon.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-pink-400 hover:text-pink-300 font-bold underline transition-colors"
+            >
+              Layon.dev
+            </a>
+          </p>
+        </footer>
       </main>
 
       {/* Modals */}
