@@ -181,10 +181,10 @@ export const PersonList: React.FC<PersonListProps> = ({
 
       {/* Record Cards Grid */}
       {sortedRecords.length === 0 ? (
-        <div className="text-center py-12 bg-slate-900/50 rounded-3xl border border-slate-800/60 p-6">
-          <Clock className="w-12 h-12 text-slate-600 mx-auto mb-3" />
-          <p className="text-sm font-bold text-slate-300">Nenhum registro encontrado</p>
-          <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+        <div className="text-center py-12 bg-white dark:bg-slate-900/50 rounded-3xl border border-slate-200 dark:border-slate-800/60 p-6">
+          <Clock className="w-12 h-12 text-slate-400 dark:text-slate-600 mx-auto mb-3" />
+          <p className="text-sm font-bold text-slate-800 dark:text-slate-300">Nenhum registro encontrado</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 max-w-sm mx-auto">
             Não foram encontrados lançamentos com os filtros selecionados.
           </p>
           <button

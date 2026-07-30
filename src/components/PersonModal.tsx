@@ -96,19 +96,19 @@ export const PersonModal: React.FC<PersonModalProps> = ({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-lg w-full shadow-2xl my-auto relative text-slate-100 font-sans max-h-[92vh] flex flex-col"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-lg w-full shadow-2xl my-auto relative text-slate-900 dark:text-slate-100 font-sans max-h-[92vh] flex flex-col"
         >
           {/* Fixed Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 shrink-0">
             <div>
-              <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white leading-tight">
                 {recordToEdit ? 'Editar Registro' : type === 'DEVO' ? 'Cadastrar Pessoa Para Quem Devo' : 'Cadastrar Pessoa Que Me Deve'}
               </h3>
-              <p className="text-[11px] text-slate-400">Preencha todos os dados referentes ao lançamento</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400">Preencha todos os dados referentes ao lançamento</p>
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors shrink-0"
+              className="p-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -118,7 +118,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
           <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto py-3 space-y-3.5 pr-1 text-left">
             {/* Name */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 mb-1 block">Nome da Pessoa *</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Nome da Pessoa *</label>
               <div className="relative">
                 <User className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
@@ -127,7 +127,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
                   placeholder="Ex: Carlos Eduardo, João Mecânico"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -135,7 +135,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
             {/* Phone & Amount in 2 Cols */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Telefone / WhatsApp</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Telefone / WhatsApp</label>
                 <div className="relative">
                   <Phone className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -143,13 +143,13 @@ export const PersonModal: React.FC<PersonModalProps> = ({
                     placeholder="Ex: 11987654321"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Valor Total (R$) *</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Valor Total (R$) *</label>
                 <div className="relative">
                   <DollarSign className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -159,7 +159,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
                     placeholder="0.00"
                     value={totalAmount}
                     onChange={(e) => setTotalAmount(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs font-bold focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs font-bold focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
@@ -167,7 +167,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
 
             {/* Description */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 mb-1 block">Descrição do Lançamento *</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Descrição do Lançamento *</label>
               <div className="relative">
                 <FileText className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                 <input
@@ -176,7 +176,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
                   placeholder="Ex: Empréstimo viagem, conserto de carro, aluguel"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
@@ -184,37 +184,37 @@ export const PersonModal: React.FC<PersonModalProps> = ({
             {/* Dates: Creation & Due Date */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Data de Origem</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Data de Origem</label>
                 <input
                   type="date"
                   required
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Data de Vencimento *</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Data de Vencimento *</label>
                 <input
                   type="date"
                   required
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
             </div>
 
             {/* Preset Avatar Selection */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 mb-1 block">Foto de Perfil (Opcional)</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Foto de Perfil (Opcional)</label>
               <div className="flex items-center gap-2 overflow-x-auto pb-1">
                 <button
                   type="button"
                   onClick={() => setPhoto('')}
-                  className={`w-10 h-10 rounded-xl bg-slate-800 border text-xs font-bold shrink-0 flex items-center justify-center ${
-                    !photo ? 'border-blue-500 text-blue-400' : 'border-slate-700 text-slate-400'
+                  className={`w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 border text-xs font-bold shrink-0 flex items-center justify-center ${
+                    !photo ? 'border-blue-500 text-blue-600 dark:text-blue-400' : 'border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400'
                   }`}
                 >
                   Sem
@@ -225,7 +225,7 @@ export const PersonModal: React.FC<PersonModalProps> = ({
                     type="button"
                     onClick={() => setPhoto(url)}
                     className={`relative w-10 h-10 rounded-xl overflow-hidden border shrink-0 ${
-                      photo === url ? 'border-blue-500 ring-2 ring-blue-500/50' : 'border-slate-700'
+                      photo === url ? 'border-blue-500 ring-2 ring-blue-500/50' : 'border-slate-200 dark:border-slate-700'
                     }`}
                   >
                     <img src={url} alt="preset avatar" className="w-full h-full object-cover" />
@@ -241,22 +241,22 @@ export const PersonModal: React.FC<PersonModalProps> = ({
 
             {/* Notes */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 mb-1 block">Observações</label>
+              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Observações</label>
               <textarea
                 rows={2}
                 placeholder="Detalhes adicionais, PIX de chave, forma de pagamento..."
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="w-full p-3 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500 resize-none"
+                className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500 resize-none"
               />
             </div>
 
             {/* Submit Action Buttons */}
-            <div className="shrink-0 pt-3 border-t border-slate-800 flex gap-2">
+            <div className="shrink-0 pt-3 border-t border-slate-200 dark:border-slate-800 flex gap-2">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 py-3 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs transition-colors"
+                className="flex-1 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl text-xs transition-colors"
               >
                 Cancelar
               </button>

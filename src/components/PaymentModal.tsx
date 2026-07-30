@@ -82,10 +82,10 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
-          className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-md w-full shadow-2xl relative text-slate-100 max-h-[92vh] flex flex-col my-auto"
+          className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-md w-full shadow-2xl relative text-slate-900 dark:text-slate-100 max-h-[92vh] flex flex-col my-auto"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 shrink-0">
             <div className="flex items-center gap-2">
               <div
                 className={`p-2 rounded-xl text-white ${
@@ -95,15 +95,15 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                 <DollarSign className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="text-base font-bold text-white">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   {isDevo ? 'Registrar Pagamento' : 'Registrar Recebimento'}
                 </h3>
-                <p className="text-xs text-slate-400">{record.name}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{record.name}</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 shrink-0"
+              className="p-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -111,18 +111,18 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
           <div className="flex-1 overflow-y-auto py-3 space-y-3.5 pr-1">
             {/* Current Status Preview Box */}
-            <div className="bg-slate-800/60 p-3.5 rounded-2xl border border-slate-700/60 space-y-1.5 text-xs">
-              <div className="flex justify-between text-slate-400">
+            <div className="bg-slate-50 dark:bg-slate-800/60 p-3.5 rounded-2xl border border-slate-200 dark:border-slate-700/60 space-y-1.5 text-xs">
+              <div className="flex justify-between text-slate-600 dark:text-slate-400">
                 <span>Valor Total:</span>
-                <span className="font-semibold text-slate-200">{formatCurrency(record.totalAmount)}</span>
+                <span className="font-semibold text-slate-800 dark:text-slate-200">{formatCurrency(record.totalAmount)}</span>
               </div>
-              <div className="flex justify-between text-slate-400">
+              <div className="flex justify-between text-slate-600 dark:text-slate-400">
                 <span>Já Pago/Recebido:</span>
-                <span className="font-semibold text-emerald-400">{formatCurrency(record.paidAmount)}</span>
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">{formatCurrency(record.paidAmount)}</span>
               </div>
-              <div className="flex justify-between font-bold text-sm pt-1 border-t border-slate-700">
-                <span className="text-slate-200">Restante Atual:</span>
-                <span className={isDevo ? 'text-rose-400' : 'text-emerald-400'}>
+              <div className="flex justify-between font-bold text-sm pt-1 border-t border-slate-200 dark:border-slate-700">
+                <span className="text-slate-800 dark:text-slate-200">Restante Atual:</span>
+                <span className={isDevo ? 'text-rose-600 dark:text-rose-400' : 'text-emerald-600 dark:text-emerald-400'}>
                   {formatCurrency(remainingBefore)}
                 </span>
               </div>
@@ -132,7 +132,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-3">
               {/* Quick Percentage Chips */}
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Atalhos de Valor</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Atalhos de Valor</label>
                 <div className="grid grid-cols-4 gap-1.5">
                   {[
                     { label: '25%', pct: 25 },
@@ -144,7 +144,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                       key={chip.label}
                       type="button"
                       onClick={() => handleQuickPercent(chip.pct)}
-                      className="py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold rounded-xl text-[11px] border border-slate-700 transition-colors"
+                      className="py-1.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold rounded-xl text-[11px] border border-slate-200 dark:border-slate-700 transition-colors"
                     >
                       {chip.label}
                     </button>
@@ -154,7 +154,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
 
               {/* Payment Amount Input */}
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">
                   Valor A Registrar (R$) *
                 </label>
                 <div className="relative">
@@ -166,14 +166,14 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                     placeholder="0.00"
                     value={amount}
                     onChange={(e) => setAmount(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 font-bold text-sm focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 font-bold text-sm focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
 
               {/* Payment Date */}
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Data da Transação *</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Data da Transação *</label>
                 <div className="relative">
                   <Calendar className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
                   <input
@@ -181,27 +181,27 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                     required
                     value={paymentDate}
                     onChange={(e) => setPaymentDate(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                   />
                 </div>
               </div>
 
               {/* Notes */}
               <div>
-                <label className="text-xs font-semibold text-slate-300 mb-1 block">Observação (Opcional)</label>
+                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1 block">Observação (Opcional)</label>
                 <input
                   type="text"
                   placeholder="Ex: Parcela 1/2 via PIX, dinheiro em mãos"
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-slate-100 text-xs focus:outline-none focus:border-blue-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 text-xs focus:outline-none focus:border-blue-500"
                 />
               </div>
 
               {/* Calculation Preview Result */}
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs flex items-center justify-between">
-                <span className="text-slate-400">Novo Saldo Restante:</span>
-                <span className="font-extrabold text-blue-400">
+              <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-xs flex items-center justify-between">
+                <span className="text-slate-600 dark:text-slate-400">Novo Saldo Restante:</span>
+                <span className="font-extrabold text-blue-600 dark:text-blue-400">
                   {formatCurrency(remainingAfter)}
                   {remainingAfter === 0 && ' (Quitado! 🎉)'}
                 </span>
@@ -212,7 +212,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold rounded-xl text-xs"
+                  className="flex-1 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl text-xs"
                 >
                   Cancelar
                 </button>

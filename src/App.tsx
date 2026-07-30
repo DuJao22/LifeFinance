@@ -199,7 +199,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans selection:bg-blue-500 selection:text-white transition-colors duration-300">
+    <div className="min-h-screen bg-slate-100 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-blue-500 selection:text-white transition-colors duration-300">
       {/* Animated Personalized Splash Intro Screen */}
       {showSplash && (
         <SplashScreen
@@ -289,15 +289,15 @@ export default function App() {
         )}
 
         {/* Footer System Credits */}
-        <footer className="mt-12 text-center text-xs text-slate-500 py-4 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <footer className="mt-12 text-center text-xs text-slate-500 dark:text-slate-400 py-4 border-t border-slate-200 dark:border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>LifeFinance © 2026 • Criptografia Profissional AES-256</p>
-          <p className="flex items-center gap-1 text-slate-400">
+          <p className="flex items-center gap-1 text-slate-600 dark:text-slate-400">
             <span>Sistema desenvolvido por</span>
             <a
               href="https://instagram.com/layon.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-pink-400 hover:text-pink-300 font-bold underline transition-colors"
+              className="text-pink-600 dark:text-pink-400 hover:text-pink-500 font-bold underline transition-colors"
             >
               Layon.dev
             </a>
