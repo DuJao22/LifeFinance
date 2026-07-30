@@ -39,7 +39,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-slate-900/80 dark:bg-slate-950/80 border-b border-slate-800/60 text-slate-100 transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-xl bg-white/90 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800/60 text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo & View Title */}
         <div className="flex items-center gap-3">
@@ -47,8 +47,8 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Wallet className="w-5 h-5" />
           </div>
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">LifeFinance</span>
-            <h1 className="text-sm font-bold text-slate-100 sm:text-base line-clamp-1">
+            <span className="text-xs font-semibold uppercase tracking-wider text-blue-600 dark:text-blue-400">LifeFinance</span>
+            <h1 className="text-sm font-bold text-slate-800 dark:text-slate-100 sm:text-base line-clamp-1">
               {getTabTitle()}
             </h1>
           </div>
@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Due Notifications Trigger */}
           <button
             onClick={onOpenNotifications}
-            className="relative p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 text-slate-300 hover:text-white transition-all border border-slate-700/50"
+            className="relative p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all border border-slate-200 dark:border-slate-700/50"
             title="Notificações de Vencimento"
           >
             <Bell className="w-5 h-5" />
@@ -73,27 +73,37 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Theme Switcher */}
           <button
             onClick={onToggleTheme}
-            className="p-2.5 rounded-xl bg-slate-800/60 hover:bg-slate-800 text-slate-300 hover:text-white transition-all border border-slate-700/50"
+            className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all border border-slate-200 dark:border-slate-700/50 flex items-center gap-1.5"
             title={isDarkMode ? 'Alternar para Tema Claro' : 'Alternar para Tema Escuro'}
           >
-            {isDarkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-slate-200" />}
+            {isDarkMode ? (
+              <>
+                <Sun className="w-5 h-5 text-amber-400" />
+                <span className="hidden sm:inline text-xs font-semibold text-amber-300">Claro</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-5 h-5 text-indigo-600" />
+                <span className="hidden sm:inline text-xs font-semibold text-indigo-700">Escuro</span>
+              </>
+            )}
           </button>
 
           {/* User Avatar Badge */}
-          <div className="flex items-center gap-2 pl-2 border-l border-slate-800">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-inner overflow-hidden border border-slate-700">
+          <div className="flex items-center gap-2 pl-2 border-l border-slate-200 dark:border-slate-800">
+            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold flex items-center justify-center text-sm shadow-inner overflow-hidden border border-slate-300 dark:border-slate-700">
               {user.photo ? (
                 <img src={user.photo} alt={user.name} className="w-full h-full object-cover" />
               ) : (
                 user.name.charAt(0).toUpperCase()
               )}
             </div>
-            <span className="hidden md:inline text-xs font-medium text-slate-200 max-w-[120px] truncate">
+            <span className="hidden md:inline text-xs font-medium text-slate-700 dark:text-slate-200 max-w-[120px] truncate">
               {user.name.split(' ')[0]}
             </span>
             <button
               onClick={onLogout}
-              className="hidden md:flex p-1.5 text-slate-400 hover:text-rose-400 transition-colors"
+              className="hidden md:flex p-1.5 text-slate-500 hover:text-rose-600 dark:text-slate-400 dark:hover:text-rose-400 transition-colors"
               title="Sair da Conta"
             >
               <LogOut className="w-4 h-4" />

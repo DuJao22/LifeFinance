@@ -27,25 +27,40 @@ import { daysUntilDue } from './utils/formatters';
 export default function App() {
   const [currentUser, setCurrentUserState] = useState<UserProfile | null>(null);
   const [activeTab, setActiveTab] = useState<string>('dashboard');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem('lifefinance_theme');
+    return saved !== null ? saved === 'dark' : true;
+  });
 
-  // Data states
   const [records, setRecords] = useState<PersonRecord[]>([]);
   const [history, setHistory] = useState<MovementHistoryItem[]>([]);
-
-  // Toast state
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
-  // Modal States
-  const [isPersonModalOpen, setIsPersonModalOpen] = useState(false);
-  const [personModalType, setPersonModalType] = useState<RecordType>('RECEBER');
+  // Modals state
+  const [isPersonModalOpen, setIsPersonModalOpen] = useState<boolean>(false);
+  const [personModalType, setPersonModalType] = useState<RecordType>('DEVO');
   const [editingRecord, setEditingRecord] = useState<PersonRecord | null>(null);
 
-  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState<boolean>(false);
   const [paymentRecord, setPaymentRecord] = useState<PersonRecord | null>(null);
 
-  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState<boolean>(false);
   const [detailRecord, setDetailRecord] = useState<PersonRecord | null>(null);
+
+  // Sync theme class with HTML and Body elements
+  useEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+    if (isDarkMode) {
+      root.classList.add('dark');
+      body.classList.add('dark');
+      localStorage.setItem('lifefinance_theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      body.classList.remove('dark');
+      localStorage.setItem('lifefinance_theme', 'light');
+    }
+  }, [isDarkMode]);
 
   // Initialize & load session
   useEffect(() => {
@@ -54,9 +69,6 @@ export default function App() {
       setCurrentUserState(user);
       loadUserData(user.id);
     }
-
-    // Apply dark class to document HTML
-    document.documentElement.classList.add('dark');
   }, []);
 
   const loadUserData = (userId: string) => {
@@ -79,15 +91,7 @@ export default function App() {
   };
 
   const toggleTheme = () => {
-    setIsDarkMode(prev => {
-      const next = !prev;
-      if (next) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-      return next;
-    });
+    setIsDarkMode(prev => !prev);
   };
 
   const handleLoginSuccess = (user: UserProfile) => {

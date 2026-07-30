@@ -25,7 +25,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 px-3 pb-3 pt-1 pointer-events-none">
-      <div className="max-w-md mx-auto pointer-events-auto bg-slate-900/90 dark:bg-slate-950/90 backdrop-blur-2xl border border-slate-800/80 rounded-2xl shadow-2xl p-1.5 flex items-center justify-around text-slate-400">
+      <div className="max-w-md mx-auto pointer-events-auto bg-white/95 dark:bg-slate-950/90 backdrop-blur-2xl border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-2xl p-1.5 flex items-center justify-around text-slate-600 dark:text-slate-400">
         {tabs.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -36,14 +36,14 @@ export const BottomNav: React.FC<BottomNavProps> = ({
               onClick={() => onChangeTab(tab.id)}
               className={`relative flex flex-col items-center justify-center py-2 px-3 rounded-xl transition-all duration-200 ${
                 isActive
-                  ? 'text-white font-semibold'
-                  : 'hover:text-slate-200 hover:bg-slate-800/40'
+                  ? 'text-blue-600 dark:text-white font-semibold'
+                  : 'hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40'
               }`}
             >
               {isActive && (
                 <motion.div
                   layoutId="bottomNavIndicator"
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600/30 to-indigo-600/30 border border-blue-500/40 rounded-xl"
+                  className="absolute inset-0 bg-blue-50 dark:bg-gradient-to-r dark:from-blue-600/30 dark:to-indigo-600/30 border border-blue-200 dark:border-blue-500/40 rounded-xl"
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                 />
               )}
