@@ -27,17 +27,17 @@ export const PersonDetailModal: React.FC<PersonDetailModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md font-sans">
+      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-2 sm:p-4 bg-slate-950/85 backdrop-blur-md font-sans overflow-y-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 10 }}
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 10 }}
-          className="bg-slate-900 border border-slate-800 rounded-3xl p-6 max-w-lg w-full shadow-2xl relative text-slate-100 max-h-[90vh] overflow-y-auto"
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 max-w-lg w-full shadow-2xl relative text-slate-100 max-h-[92vh] flex flex-col my-auto"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-4">
+          <div className="flex items-center justify-between pb-3 border-b border-slate-800 shrink-0">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold flex items-center justify-center text-lg overflow-hidden border border-slate-700">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold flex items-center justify-center text-lg overflow-hidden border border-slate-700 shrink-0">
                 {record.photo ? (
                   <img src={record.photo} alt={record.name} className="w-full h-full object-cover" />
                 ) : (
@@ -45,17 +45,20 @@ export const PersonDetailModal: React.FC<PersonDetailModalProps> = ({
                 )}
               </div>
               <div>
-                <h3 className="font-extrabold text-base">{record.name}</h3>
-                <p className="text-xs text-slate-400">{record.description}</p>
+                <h3 className="font-extrabold text-sm sm:text-base text-white">{record.name}</h3>
+                <p className="text-[11px] text-slate-400">{record.description}</p>
               </div>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400"
+              className="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Scrollable Content */}
+          <div className="flex-1 overflow-y-auto py-3 space-y-4 pr-1">
 
           {/* Key Stats Box */}
           <div className="bg-slate-800/60 p-4 rounded-2xl border border-slate-700/60 mb-4 space-y-2 text-xs">
@@ -140,6 +143,7 @@ export const PersonDetailModal: React.FC<PersonDetailModalProps> = ({
                 ))}
               </div>
             )}
+          </div>
           </div>
         </motion.div>
       </div>
